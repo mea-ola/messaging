@@ -1,0 +1,16 @@
+<script src="http://localhost:3000/socket.io/socket.io.js"></script>
+<script>
+  
+  function connect (port) {
+    var socket = io('http://localhost:' + port);
+    socket.on('message', function (data) {
+      console.log(data);
+    });
+    
+    window.sendMsg = function (msg) {
+      socket.emit('message', msg);
+    }
+    
+  }
+  
+</script>
