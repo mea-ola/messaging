@@ -1,16 +1,13 @@
 <script src="http://localhost:3000/socket.io/socket.io.js"></script>
 <script>
   
-  function connect (port) {
-    var socket = io('http://localhost:' + port);
-    socket.on('message', function (data) {
-      console.log(data);
-    });
-    
-    window.sendMsg = function (msg) {
-      socket.emit('message', msg);
-    }
-    
+  function connect (port, jwt) {
+    var socket = io.connect('http://localhost:' + port);
+    socket
+      .on('authenticated', function () {
+        console.log("Authenticated")
+      })
+      .emit('authenticate', {token: jwt}); //send the jwt
   }
   
 </script>
