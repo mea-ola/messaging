@@ -20,6 +20,10 @@ io.on('connection', socket => {
   debug("Client add " + socket.id);
   io.emit('message', { data: 'User Connected ' + socket.id });
   
+  // Do some user autorization and get current user info.
+  socket.join('user1'); // And use some user registration token
+  
+  
   socket.on('message', data => {
     debug(data);
     io.emit('message', {
