@@ -11,5 +11,8 @@ Using socket.io and socket.io-redis to run multiple nodes backed by redis pub/su
 
 Will run babel node with nodemon so changes are automaticly update on both instances. The reason for multiple instances is to insure durning development nothing will break being able to run multiple in production.
 
-### Reason and Use
+### Reason
 Any client needing to push data will connect to messaging. Hooks into messaging can be made by other servies to push data to clients. More on this spec later.
+
+### Usage Externally
+The easiest way to use the room emiters is with socket.io-emitter. Connect to the redis backend and it will take care of the message layout. But if you must publish from another language, you can look at the socket.io-emitter source which will tell you to use msgpack with `data` and `room` as the two keys. Then publish that message to `socket.io#emitter`.
