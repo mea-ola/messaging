@@ -25,7 +25,7 @@ io.on('connection', socketioJwt.authorize({
   
     debug("Client add " + socket.id);
     debug(JSON.stringify(socket.decoded_token, null, 4));
-    socket.join("user" + socket.decoded_token.user_id); // And use some user registration token
+    socket.join(`user(${socket.decoded_token.user_id})`); // And use some user registration token
       
     socket.on('message', data => {
       debug(data);
